@@ -16,14 +16,12 @@ export const PlayerCard = ({id}) => {
         
     function handleCustomNameSubmit(event) {
         event.preventDefault()
-        setPlayerName(input)
+        input && setPlayerName(input)
         setInput("")
     }
 
     return (
         <div>
-            {/* Validation for blank names: */}
-            {/* {playerName ? <h3>{playerName}</h3> : <h3>Player {id}</h3>} */}
             <h3>{playerName}</h3>
             <form onSubmit={handleCustomNameSubmit}>
                 <input value={input} id="inputField" type="text" placeholder="add a custom name" onChange={handleInputChange}/>
