@@ -1,14 +1,10 @@
 import React from 'react'
-import { PlayerCard } from './PlayerCard'
+import { SelectPlayers } from './SelectPlayers'
 
 const App = () => {
   return (
     <div >
-          The basic empty template
-
-          <PlayerCard name="Emily"/>
-          <PlayerCard name="Derick"/>
-          <PlayerCard name="Ihab"/>
+          <SelectPlayers/>
     </div>
   )
 }
