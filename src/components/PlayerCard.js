@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-export const PlayerCard = ({name}) => {
+export const PlayerCard = ({id}) => {
 
     const [selection, setSelection] = useState("")
 
@@ -10,7 +10,7 @@ export const PlayerCard = ({name}) => {
 
     return (
         <div>
-            <h3>Player: {name}</h3>
+            <h3>Player {id}</h3>
             <p>Lock in your guess:</p>
             {!selection &&
                 <>
