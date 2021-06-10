@@ -12,7 +12,7 @@ export const SelectPlayers = () => {
     let players = []
     if (playerNumber) {
         for (let i = 1; i <= playerNumber; i++) {
-            players.push(<PlayerCard name={i} key={`player ${i}`}/>)
+            players.push(<PlayerCard id={i} key={`player ${i}`}/>)
         }
     }
 
