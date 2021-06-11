@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import getRandomCoords from '../utils/getRandomCoords'
+import { SelectPlayers } from './SelectPlayers'
 
 export const Coordinates = () => {
 
@@ -40,8 +41,6 @@ export const Coordinates = () => {
         }
     }
 
-    console.log(data && data)
-
     return (
         <>
             <h1>Your random coordinates are:</h1>
@@ -58,6 +57,7 @@ export const Coordinates = () => {
                     <input type="number" id="lon" name="longitude" value={data.lon} onChange={handleFormData}/>
                 </form>
             }
+            <SelectPlayers onWater={data.water}/>
         </>
     );
 }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {PlayerCard} from './PlayerCard'
 
-export const SelectPlayers = () => {
+export const SelectPlayers = ({onWater}) => {
 
     const [numOfPlayers, setNumOfPlayers] = useState("")
 
@@ -12,7 +12,7 @@ export const SelectPlayers = () => {
     let players = []
     if (numOfPlayers) {
         for (let i = 1; i <= numOfPlayers; i++) {
-            players.push(<PlayerCard id={i} key={`player ${i}`}/>)
+            players.push(<PlayerCard id={i} key={`player ${i}`} onWater={onWater}/>)
         }
     }
 
