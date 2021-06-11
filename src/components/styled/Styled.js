@@ -94,6 +94,8 @@ export const PlayerCardStyled = styled.span`
         border: 2px solid #000000;
         display: flex;
         flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
     }
 
     .input-field{
