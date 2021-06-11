@@ -9,10 +9,10 @@ export const SelectPlayers = ({playerData, setNumOfPlayers, setPlayerGuess, setP
         setNumOfPlayers(event.target.value)
     }
 
-    let players = []
+    let playersArr = []
     if (numOfPlayers) {
         for (let i = 1; i <= numOfPlayers; i++) {
-            players.push(<PlayerCard id={i} key={`player ${i}`} players={players} setPlayerGuess={setPlayerGuess} setPlayerName={setPlayerName}/>)
+            playersArr.push(<PlayerCard id={i} key={`player ${i}`} players={players} setPlayerGuess={setPlayerGuess} setPlayerName={setPlayerName}/>)
         }
     }
 
@@ -32,7 +32,7 @@ export const SelectPlayers = ({playerData, setNumOfPlayers, setPlayerGuess, setP
                 </select>
                 </>
             }
-            {numOfPlayers && players}
+            {numOfPlayers && playersArr}
         </div>
     )
 }

@@ -14,7 +14,6 @@ const App = () => {
       playerData: {
           numOfPlayers: 0,
           players: [{
-              playerId: null,
               playerName: null,
               playerGuess: null,
               playerHasGuessed: false,

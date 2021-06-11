@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import getRandomCoords from '../utils/getRandomCoords'
 
-export const Coordinates = () => {
+export const Coordinates = ({correctAnswer, water}) => {
 
     const access_token = "Tf4sirqkzfxKVpj-unYc"
 
