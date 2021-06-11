@@ -3,9 +3,10 @@ import React, {useState} from 'react'
 export const PlayerCard = ({id, onWater}) => {
 
     const [playerGuess, setPlayerGuess] = useState("")
-    // const [guessResult, setGuessResult] = useState("")
     const [playerName, setPlayerName] = useState(`Player ${id}`)
     const [input, setInput] = useState("")
+    let displayGuess = false
+    let guessResult = ""
 
     function handleButton(event) {
         setPlayerGuess(event.target.value)
@@ -21,12 +22,16 @@ export const PlayerCard = ({id, onWater}) => {
         setInput("")
     }
 
+    function toggleAnswer() {
+        displayGuess = displayGuess ? false : true
+    }
+
     if ((playerGuess === "Water" && onWater === true) || (playerGuess === "Land" && onWater === false)) {
-        console.log(`${[playerName]} guessed right!`)
-        // setGuessResult("correct")
+        // console.log(`${[playerName]} guessed right!`)
+        guessResult = "correct"
     } else if ((playerGuess === "Water" && onWater === false) || (playerGuess === "Land" && onWater === true)) {
-        console.log(`Wamp wamp... ${[playerName]} guessed wrong`)
-        // setGuessResult("incorrect")
+        // console.log(`Wamp wamp... ${[playerName]} guessed wrong`)
+        guessResult = "incorrect"
     } 
 
     return (
@@ -43,8 +48,13 @@ export const PlayerCard = ({id, onWater}) => {
                 <button value="Water" onClick={handleButton}>Water</button>
                 </>
             }
-            {playerGuess && <p>{playerName} chose: {playerGuess}</p>}
-            {/* {guessResult && guessResult === "correct" ? <p>You're right!</p> : guessResult === "incorrect" ? <p>Wamp wamp... better luck next time</p> : null} */}
+            {playerGuess && 
+                <>
+                <p>{playerName} chose: {playerGuess}</p>
+                <button id="reveal" onClick={toggleAnswer}>Were you right?</button>
+                </>
+            }
+            {/* {displayGuess && guessResult === "correct" ? <p>You're right!</p> : guessResult === "incorrect" ? <p>Wamp wamp... better luck next time.</p> : null} */}
         </div>
     )
 }
