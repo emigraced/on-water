@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import getRandomCoords from '../utils/getRandomCoords'
 import {StyledCoordinates} from '../components/styled/Styled'
+import { SelectPlayers } from './SelectPlayers'
 
 export const Coordinates = () => {
 
@@ -41,8 +42,6 @@ export const Coordinates = () => {
         }
     }
 
-    console.log(data && data)
-
     return (
         <StyledCoordinates>
             <h1>Your random coordinates are:</h1>
@@ -58,7 +57,10 @@ export const Coordinates = () => {
                     {/* min="-180" max="180" */}
                     <input type="number" id="lon" name="longitude" value={data.lon} onChange={handleFormData} className="input-field"/>
                 </form>
-            }
+              }
+              <SelectPlayers onWater={data.water}/>
+       
         </StyledCoordinates>
+           
     );
 }
