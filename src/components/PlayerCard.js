@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 
-export const PlayerCard = ({id}) => {
+export const PlayerCard = ({id, players, setPlayerGuess, setPlayerName}) => {
 
-    const [playerGuess, setPlayerGuess] = useState("")
-    const [playerName, setPlayerName] = useState(`Player ${id}`)
+    const {playerGuess, playerName} = players
+
+    setPlayerName(`Player ${id}`)
+
     const [input, setInput] = useState("")
 
     function handleButton(event) {

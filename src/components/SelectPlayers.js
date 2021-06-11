@@ -1,9 +1,9 @@
 import React from 'react'
 import {PlayerCard} from './PlayerCard'
 
-export const SelectPlayers = ({playerData, setNumOfPlayers}) => {
+export const SelectPlayers = ({playerData, setNumOfPlayers, setPlayerGuess, setPlayerName}) => {
 
-    const {numOfPlayers} = playerData
+    const {numOfPlayers, players} = playerData
 
     function handleSelection(event) {
         setNumOfPlayers(event.target.value)
@@ -12,7 +12,7 @@ export const SelectPlayers = ({playerData, setNumOfPlayers}) => {
     let players = []
     if (numOfPlayers) {
         for (let i = 1; i <= numOfPlayers; i++) {
-            players.push(<PlayerCard id={i} key={`player ${i}`}/>)
+            players.push(<PlayerCard id={i} key={`player ${i}`} players={players} setPlayerGuess={setPlayerGuess} setPlayerName={setPlayerName}/>)
         }
     }
 

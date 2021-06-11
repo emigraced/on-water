@@ -34,10 +34,24 @@ const App = () => {
     })
   }
 
+  function setPlayerGuess(string) {
+    dispatch({
+      type: 'setPlayerGuess',
+      data: string
+    })
+  }
+
+  function setPlayerName(string) {
+    dispatch({
+      type: 'setPlayerName',
+      data: string
+    })
+  }
+
   return (
     <>
         <Coordinates correctAnswer={correctAnswer} water={water}/>
-        <SelectPlayers playerData={playerData} setNumOfPlayers={setNumOfPlayers}/>
+        <SelectPlayers playerData={playerData} setNumOfPlayers={setNumOfPlayers} setPlayerGuess={setPlayerGuess} setPlayerName={setPlayerName}/>
     </>
   )
 }
