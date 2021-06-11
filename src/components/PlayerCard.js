@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 
-export const PlayerCard = ({id}) => {
+export const PlayerCard = ({id, onWater}) => {
 
     const [playerGuess, setPlayerGuess] = useState("")
+    // const [guessResult, setGuessResult] = useState("")
     const [playerName, setPlayerName] = useState(`Player ${id}`)
     const [input, setInput] = useState("")
 
@@ -20,6 +21,14 @@ export const PlayerCard = ({id}) => {
         setInput("")
     }
 
+    if ((playerGuess === "Water" && onWater === true) || (playerGuess === "Land" && onWater === false)) {
+        console.log(`${[playerName]} guessed right!`)
+        // setGuessResult("correct")
+    } else if ((playerGuess === "Water" && onWater === false) || (playerGuess === "Land" && onWater === true)) {
+        console.log(`Wamp wamp... ${[playerName]} guessed wrong`)
+        // setGuessResult("incorrect")
+    } 
+
     return (
         <div>
             <h3>{playerName}</h3>
@@ -35,6 +44,7 @@ export const PlayerCard = ({id}) => {
                 </>
             }
             {playerGuess && <p>{playerName} chose: {playerGuess}</p>}
+            {/* {guessResult && guessResult === "correct" ? <p>You're right!</p> : guessResult === "incorrect" ? <p>Wamp wamp... better luck next time</p> : null} */}
         </div>
     )
 }
