@@ -1,15 +1,12 @@
 import React, {useState} from 'react'
 
-export const PlayerCard = ({id, players, setPlayerGuess, setPlayerName}) => {
+export const PlayerCard = ({thisPlayer, setPlayerGuess, setPlayerName}) => {
 
-    const {playerGuess, playerName} = players
-
-    setPlayerName(`Player ${id}`)
-
+    const {playerId, playerGuess, playerName, /*playerHasGuessed, score*/} = thisPlayer
     const [input, setInput] = useState("")
 
     function handleButton(event) {
-        setPlayerGuess(event.target.value)
+        setPlayerGuess(playerId, event.target.value)
     }
 
     function handleInputChange(event) {
@@ -18,7 +15,7 @@ export const PlayerCard = ({id, players, setPlayerGuess, setPlayerName}) => {
         
     function handleCustomNameSubmit(event) {
         event.preventDefault()
-        input && setPlayerName(input)
+        input && setPlayerName(playerId, input)
         setInput("")
     }
 

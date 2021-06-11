@@ -4,15 +4,16 @@ import {PlayerCard} from './PlayerCard'
 export const SelectPlayers = ({playerData, setNumOfPlayers, setPlayerGuess, setPlayerName}) => {
 
     const {numOfPlayers, players} = playerData
-
     function handleSelection(event) {
         setNumOfPlayers(event.target.value)
     }
 
     let playersArr = []
     if (numOfPlayers) {
-        for (let i = 1; i <= numOfPlayers; i++) {
-            playersArr.push(<PlayerCard id={i} key={`player ${i}`} players={players} setPlayerGuess={setPlayerGuess} setPlayerName={setPlayerName}/>)
+        for (let i = 0; i < numOfPlayers; i++) {
+            // sending through only one player, not all players should save on using logic in PlayerCard
+            let thisPlayer = players[i]
+            playersArr.push(<PlayerCard id={thisPlayer.playerId} key={`player ${i}`} thisPlayer={thisPlayer} setPlayerGuess={setPlayerGuess} setPlayerName={setPlayerName}/>)
         }
     }
 

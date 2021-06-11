@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import getRandomCoords from '../utils/getRandomCoords'
 
-export const Coordinates = ({correctAnswer, water}) => {
+export const Coordinates = ({setCorrectAnswer}) => {
 
+        /* side note: access tokens should be moved to a
+        local .env and added to .gitignore.*/
+    // original token:
     const access_token = "Tf4sirqkzfxKVpj-unYc"
+    // Derick's token:
+    // const access_token = "4cu5cGJGp55DzNY646s9"
 
     let coords = getRandomCoords()
     const {lat, lon} = coords
@@ -15,14 +20,23 @@ export const Coordinates = ({correctAnswer, water}) => {
 
     const [data, setData] = useState(initialData)
     const [formDisplay, setFormDisplay] = useState(false)
-    
+
     useEffect(() => {
         fetch(`https://api.onwater.io/api/v1/results/${data.lat},${data.lon}?access_token=${access_token}`)
         .then((response) => response.json())
-        .then((data) => setData(data))
+        .then((data) => {
+            console.log("data", data)
+            setData(data)
+            setCorrectAnswer({
+                query: data.query,
+                lat: data.lat,
+                lon: data.lon,
+                water: data.water
+            })
+        })
         .catch((e) => `My error is: ${e}`)
     }, [])
-    
+
     function handleFormData(event){
         setData({
             ...data,

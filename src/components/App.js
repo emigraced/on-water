@@ -1,30 +1,60 @@
-import React, {useReducer} from 'react'
+import React, {useReducer, useEffect} from 'react'
 import { Coordinates } from './Coordinates'
 import { SelectPlayers } from './SelectPlayers'
 import reducer from '../utils/reducer'
 
 const App = () => {
 
+  
   const initialState = {
-      correctAnswer: {
-          coords: null,
-          answer: null
-      },
-      water: null,
-      playerData: {
-          numOfPlayers: 0,
-          players: [{
-              playerName: null,
-              playerGuess: null,
-              playerHasGuessed: false,
-              score: 0
-          }],
-          numOfPlayersGuessed: 0
-      }
+    correctAnswer: {
+      coords: '',
+      lat: null,
+      long: null,
+      answer: null,
+      isSet: false
+    },
+    playerData: {
+      numOfPlayers: null,
+      players: [],
+      numOfPlayersGuessed: 0
+    }
+  }
+  
+  const [store, dispatch] = useReducer(reducer, initialState)
+  const {correctAnswer, playerData} = store
+  
+  useEffect( ()=>{
+    console.log("initialState",initialState)
+    console.log("store", store)
+  },)
+
+  function setCorrectAnswer(answer){
+    dispatch({type: 'setCorrectAnswer', data: answer})
   }
 
-  const [store, dispatch] = useReducer(reducer, initialState)
-  const {correctAnswer, water, playerData} = store
+  /*functions for updating player data require two arguments:
+  the playerId and value for helper functions in reducer. */
+  function setPlayerGuess(playerId, value){
+    dispatch({
+      type: 'setPlayerGuess',
+      // send through object to reducer
+      data: {
+        id: playerId,
+        guess: value
+      }
+    })
+    dispatch({type: 'setPlayerAsGuessed', data: {id: playerId, bool: true}})
+  }
+  
+  function setPlayerName(playerId, value){
+    dispatch({type: 'setPlayerName', data: {id: playerId, name: value}})
+  }
+
+  // commented out to stop warnings, until feature is added
+/*  function setPlayerScore(playerId, value){
+    dispatch({type: 'setPlayerScore', data: {id: playerId, score: value}})
+  }*/
 
   function setNumOfPlayers(number) {
     dispatch({
@@ -33,23 +63,9 @@ const App = () => {
     })
   }
 
-  function setPlayerGuess(string) {
-    dispatch({
-      type: 'setPlayerGuess',
-      data: string
-    })
-  }
-
-  function setPlayerName(string) {
-    dispatch({
-      type: 'setPlayerName',
-      data: string
-    })
-  }
-
   return (
     <>
-        <Coordinates correctAnswer={correctAnswer} water={water}/>
+        <Coordinates correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer} />
         <SelectPlayers playerData={playerData} setNumOfPlayers={setNumOfPlayers} setPlayerGuess={setPlayerGuess} setPlayerName={setPlayerName}/>
     </>
   )
