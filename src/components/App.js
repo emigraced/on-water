@@ -4,7 +4,7 @@ import {SelectPlayers} from './SelectPlayers'
 
 const App = () => {
   return (
-    <div >
+    <div>
           <Coordinates />
           <SelectPlayers />
     </div>

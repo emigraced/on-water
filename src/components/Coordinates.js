@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import getRandomCoords from '../utils/getRandomCoords'
+import {StyledCoordinates} from '../components/styled/Styled'
 
 export const Coordinates = () => {
 
@@ -43,21 +44,21 @@ export const Coordinates = () => {
     console.log(data && data)
 
     return (
-        <>
+        <StyledCoordinates>
             <h1>Your random coordinates are:</h1>
-            {data ? <h2>{`Latitude: ${data.lat}, Longitude: ${data.lon}`}</h2> : <h3>Loading...</h3>}
+            {data ? <h2 className="random-coords">{`Latitude: ${data.lat}, Longitude: ${data.lon}`}</h2> : <h3>Loading...</h3>}
             <p>Want to test your friends? Click 'show' to enter your own coordinates.</p>
-            <button id="toggle" onClick={toggleFormDisplay}>Show</button>
+            <button id="toggle" onClick={toggleFormDisplay} className="show-button">Show</button>
             {formDisplay && 
                 <form>
-                    <label htmlFor="lat">Lat:</label>
+                    <label htmlFor="lat" className="coords-label">Lat:</label>
                     {/* min="-90" max="90" */}
-                    <input type="number" id="lat" name="latitude" value={data.lat} onChange={handleFormData}/>
-                    <label htmlFor="long">Lon:</label>
+                    <input type="number" id="lat" name="latitude" value={data.lat} onChange={handleFormData} className="input-field"/>
+                    <label htmlFor="long" className="coords-label">Lon:</label>
                     {/* min="-180" max="180" */}
-                    <input type="number" id="lon" name="longitude" value={data.lon} onChange={handleFormData}/>
+                    <input type="number" id="lon" name="longitude" value={data.lon} onChange={handleFormData} className="input-field"/>
                 </form>
             }
-        </>
+        </StyledCoordinates>
     );
 }

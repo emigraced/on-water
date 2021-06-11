@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {PlayerCardStyled, PlayerCardContainer} from '../components/styled/Styled'
 
 export const PlayerCard = ({id}) => {
 
@@ -21,20 +22,22 @@ export const PlayerCard = ({id}) => {
     }
 
     return (
-        <div>
-            <h3>{playerName}</h3>
+     
+        <PlayerCardStyled>
+            <h3 className="player-name">{playerName}</h3>
             <form onSubmit={handleCustomNameSubmit}>
-                <input value={input} id="inputField" type="text" placeholder="add a custom name" onChange={handleInputChange}/>
-                <input type="submit"/>
+                <input value={input} id="inputField" type="text" placeholder="Your Name Here" onChange={handleInputChange} className="input-field"/>
+                <input type="submit" className="play-button"/>
             </form>
             <h4>Lock in your guess:</h4>
             {!playerGuess &&
                 <>
-                <button value="Land" onClick={handleButton}>Land</button>
-                <button value="Water" onClick={handleButton}>Water</button>
+                <button value="Land" onClick={handleButton} className="play-button">Land</button>
+                <button value="Water" onClick={handleButton} className="play-button">Water</button>
                 </>
             }
-            {playerGuess && <p>{playerName} chose: {playerGuess}</p>}
-        </div>
-    )
+            {playerGuess && <p className="player-guess">{playerName} chose: {playerGuess}</p>}
+        </PlayerCardStyled>
+
+   )   
 }
