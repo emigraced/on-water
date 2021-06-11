@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {PlayerCard} from './PlayerCard'
 
-export const SelectPlayers = () => {
+export const SelectPlayers = ({playerData, setNumOfPlayers}) => {
 
-    const [numOfPlayers, setNumOfPlayers] = useState("")
+    const {numOfPlayers} = playerData
 
     function handleSelection(event) {
         setNumOfPlayers(event.target.value)
