@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {PlayerCardStyled, PlayerCardContainer} from '../components/styled/Styled'
+import {PlayerCardStyled} from '../components/styled/Styled'
 
 export const PlayerCard = ({id, onWater}) => {
 
@@ -7,7 +7,7 @@ export const PlayerCard = ({id, onWater}) => {
     const [playerName, setPlayerName] = useState(`Player ${id}`)
     const [input, setInput] = useState("")
     let displayGuess = false
-    let guessResult = ""
+    // let guessResult = ""
 
     function handleButton(event) {
         setPlayerGuess(event.target.value)
@@ -28,11 +28,11 @@ export const PlayerCard = ({id, onWater}) => {
     }
 
     if ((playerGuess === "Water" && onWater === true) || (playerGuess === "Land" && onWater === false)) {
-        // console.log(`${[playerName]} guessed right!`)
-        guessResult = "correct"
+        console.log(`${[playerName]} guessed right!`)
+        // guessResult = "correct"
     } else if ((playerGuess === "Water" && onWater === false) || (playerGuess === "Land" && onWater === true)) {
-        // console.log(`Wamp wamp... ${[playerName]} guessed wrong`)
-        guessResult = "incorrect"
+        console.log(`Wamp wamp... ${[playerName]} guessed wrong`)
+        // guessResult = "incorrect"
     } 
 
     return (
@@ -50,10 +50,10 @@ export const PlayerCard = ({id, onWater}) => {
                 <button value="Water" onClick={handleButton} className="play-button">Water</button>
                 </>
             }
-            {playerGuess && <p className="player-guess">{playerName} chose: {playerGuess}</p>} 
+            {/* {playerGuess && <p className="player-guess">{playerName} chose: {playerGuess}</p>}  */}
             {playerGuess && 
                 <>
-                <p>{playerName} chose: {playerGuess}</p>
+                <p className="player-guess">{playerName} chose: {playerGuess}</p>
                 <button id="reveal" onClick={toggleAnswer}>Were you right?</button>
                 </>
             }
